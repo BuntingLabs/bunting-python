@@ -3,6 +3,7 @@ import urllib.request
 import json
 
 OSM_EXTRACT_ENDPOINT = 'http://osm.buntinglabs.com/v1/osm/extract'
+BUILDING_SELECT_ENDPOINT = 'http://osm.buntinglabs.com/v1/buildings/select'
 
 class BuntingClient:
 
@@ -29,3 +30,16 @@ class BuntingClient:
 
         return json.loads(response.read().decode())
 
+    def building_select(self, bbox=None):
+        # list of tags
+        if not (isinstance(bbox, tuple) and len(bbox) == 4):
+            raise TypeError('bbox must be tuple with 4 floats')
+
+        params = {
+            'api_key': self.api_key,
+            'bbox': '%f,%f,%f,%f' % bbox
+        }
+
+        response = urllib.request.urlopen(BUILDING_SELECT_ENDPOINT + "?" + urllib.parse.urlencode(params))
+
+        return json.loads(response.read().decode())
