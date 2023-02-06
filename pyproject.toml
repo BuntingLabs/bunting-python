@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bunting"
-version = "0.1.3"
+version = "0.1.4"
 description = "SDK for geospatial APIs like OpenStreetMap and Census"
 authors = ["Brendan Ashworth <brendan@buntinglabs.com>"]
 readme = "README.md"
